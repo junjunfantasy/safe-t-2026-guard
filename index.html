@@ -6,11 +6,11 @@
     <title>SAFE-T Guard 2026 | 亚马逊赔偿保护专家</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-gray-50 text-gray-900">
-    <div class="bg-red-600 text-white text-center py-2 text-sm font-bold shadow-lg">⚠️ 2/16新政已生效：30天索赔期倒计时启动！</div>
+<body class="bg-gray-50 text-gray-900 font-sans">
+    <div class="bg-red-600 text-white text-center py-2 text-sm font-bold shadow-lg italic">⚠️ 2/16新政已生效：30天索赔期倒计时启动！</div>
 
-    <nav class="p-6 flex flex-col md:flex-row justify-between items-center bg-white shadow-sm border-b gap-4">
-        <div class="text-xl md:text-2xl font-black text-blue-600 tracking-tighter italic">
+    <nav class="p-6 flex flex-col lg:flex-row justify-between items-center bg-white shadow-sm border-b gap-4">
+        <div class="text-xl md:text-2xl font-black text-blue-600 tracking-tighter italic text-center lg:text-left leading-tight">
             SAFE-T <span class="text-gray-800">Guard 2026 | 亚马逊赔偿保护专家</span>
         </div>
         <button onclick="showModal()" class="bg-blue-600 text-white px-8 py-2 rounded-full font-bold hover:scale-105 transition shadow-md whitespace-nowrap">获取VIP权限</button>
@@ -22,8 +22,8 @@
     </header>
 
     <section class="max-w-xl mx-auto px-6 py-10 bg-white rounded-3xl shadow-2xl mb-20 border border-gray-100 text-center">
-        <div class="mb-6"><span class="px-4 py-1 bg-blue-50 text-blue-600 rounded-full text-xs font-bold border border-blue-200">US Marketplace Only</span></div>
-        <input type="date" id="orderDate" class="w-full p-4 border-2 border-gray-100 rounded-2xl mb-4 outline-none focus:border-blue-500 text-center text-xl font-bold">
+        <div class="mb-6"><span class="px-4 py-1 bg-blue-50 text-blue-600 rounded-full text-xs font-bold border border-blue-200 uppercase">US Marketplace Only</span></div>
+        <input type="date" id="orderDate" class="w-full p-4 border-2 border-gray-100 rounded-2xl mb-4 outline-none focus:border-blue-500 text-center text-xl font-bold shadow-inner">
         <button onclick="calculate()" class="w-full bg-blue-600 text-white py-4 rounded-2xl font-bold text-lg shadow-lg hover:bg-blue-700 transition active:scale-95">立即核查时效</button>
         <div id="result" class="hidden mt-6 p-6 rounded-2xl font-bold"></div>
     </section>
@@ -31,43 +31,53 @@
     <section class="max-w-6xl mx-auto px-6 py-10 grid md:grid-cols-3 gap-8 pb-32">
         <div onclick="showModal()" class="cursor-pointer p-8 bg-white rounded-2xl shadow-sm border border-gray-100 hover:border-blue-400 transition group text-left">
             <div class="text-blue-500 mb-4 font-black text-lg">01 自动同步监控</div>
-            <p class="text-gray-500 text-sm">无需手动计算，API 自动抓取退单并实时推送过期预警。</p>
+            <p class="text-gray-500 text-sm">API 自动抓取退单并实时推送过期预警。</p>
             <div class="mt-6 text-blue-600 text-xs font-bold underline group-hover:text-blue-800 italic">立即开启 →</div>
         </div>
         <div class="p-8 bg-white rounded-2xl shadow-sm border border-gray-100 text-left">
-            <div class="text-green-500 mb-4 font-black text-lg">02 AI 证据生成</div>
+            <div class="text-green-500 mb-4 font-black text-lg text-left">02 AI 证据生成</div>
             <p class="text-gray-500 text-sm leading-relaxed text-left">AI自动比对重量与照片，生成100%过审的证据包。</p>
             <div class="mt-6 text-gray-300 text-xs font-bold italic">即将上线</div>
         </div>
         <div onclick="showModal()" class="cursor-pointer p-8 bg-white rounded-2xl shadow-sm border border-gray-100 hover:border-purple-400 transition group text-left">
             <div class="text-purple-500 mb-4 font-black text-lg">03 多站点覆盖</div>
             <p class="text-gray-500 text-sm">同步支持英、德、日站点政策变动，确保全球赔偿不遗漏。</p>
-            <div class="mt-6 text-purple-600 text-xs font-bold underline group-hover:text-purple-800 italic">开通全球版 →</div>
+            <div class="mt-6 text-purple-600 text-xs font-bold underline group-hover:text-purple-800 italic text-left">开通全球版 →</div>
         </div>
     </section>
 
     <div id="modal" class="hidden fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center p-6 z-50">
         <div class="bg-white p-8 rounded-3xl max-w-sm w-full text-center shadow-2xl border-4 border-blue-50">
-            <h3 class="text-2xl font-extrabold mb-2 text-gray-900 leading-tight">VIP Access Request</h3>
-            <p class="text-gray-500 text-xs mb-8 leading-relaxed">Request VIP access to enable automated API monitoring and AI evidence generation.</p>
-            
-            <form action="https://getform.io/f/nm5ok" method="POST" class="space-y-4">
-                <input type="text" name="store_name" placeholder="Your Amazon Store Name" required 
-                       class="w-full p-4 border border-gray-200 rounded-xl outline-none focus:ring-4 ring-blue-100 transition shadow-inner text-center font-bold">
+            <div id="modalContent">
+                <h3 class="text-2xl font-extrabold mb-2 text-gray-900 leading-tight">VIP Access Request</h3>
+                <p class="text-gray-500 text-xs mb-8 leading-relaxed">Amazon's new 30-day policy is LIVE. Request VIP access to protect your store.</p>
                 
-                <input type="email" name="email" placeholder="Business Email Address" required 
-                       class="w-full p-4 border border-gray-200 rounded-xl outline-none focus:ring-4 ring-blue-100 transition shadow-inner text-center font-bold">
-                
-                <button type="submit" class="w-full bg-blue-600 text-white py-4 rounded-xl font-bold text-lg shadow-lg hover:bg-blue-700 active:scale-95 transition">
-                    Submit Request
-                </button>
-            </form>
+                <form id="vipForm" class="space-y-4">
+                    <input type="text" name="name" id="shopName" placeholder="Your Amazon Store Name" required 
+                           class="w-full p-4 border border-gray-200 rounded-xl outline-none focus:ring-4 ring-blue-100 transition shadow-inner text-center font-bold">
+                    
+                    <input type="email" name="email" id="userEmail" placeholder="Business Email Address" required 
+                           class="w-full p-4 border border-gray-200 rounded-xl outline-none focus:ring-4 ring-blue-100 transition shadow-inner text-center font-bold">
+                    
+                    <button type="submit" id="submitBtn" class="w-full bg-blue-600 text-white py-4 rounded-xl font-bold text-lg shadow-lg hover:bg-blue-700 active:scale-95 transition">
+                        Submit Request
+                    </button>
+                </form>
+            </div>
             
-            <button onclick="hideModal()" class="mt-6 text-gray-400 text-xs hover:text-gray-600 transition underline">Back to Home</button>
+            <div id="successContent" class="hidden">
+                <div class="text-5xl mb-4">✅</div>
+                <h3 class="text-2xl font-extrabold mb-2 text-gray-900">Request Received!</h3>
+                <p class="text-gray-500 text-sm mb-8">We will send your VIP Access Code to your email within 24 hours.</p>
+                <button onclick="hideModal()" class="w-full bg-gray-100 text-gray-600 py-4 rounded-xl font-bold">Close</button>
+            </div>
+            
+            <button id="backBtn" onclick="hideModal()" class="mt-6 text-gray-400 text-xs hover:text-gray-600 transition underline block mx-auto">Back to Home</button>
         </div>
     </div>
 
     <script>
+        // 计算器逻辑
         function calculate() {
             const d = document.getElementById('orderDate').value;
             if(!d) return alert('请先选择日期');
@@ -77,8 +87,51 @@
             res.className = 'mt-6 p-6 rounded-2xl text-center font-bold block ' + (days > 0 ? 'bg-green-50 text-green-600' : 'bg-red-50 text-red-600');
             res.innerHTML = days > 0 ? "🚨 剩余 " + days + " 天！请尽快提交索赔。" : "❌ 已超出 30 天申诉期！";
         }
+
         function showModal() { document.getElementById('modal').classList.remove('hidden'); }
-        function hideModal() { document.getElementById('modal').classList.add('hidden'); }
+        function hideModal() { 
+            document.getElementById('modal').classList.add('hidden');
+            // 重置状态
+            document.getElementById('modalContent').classList.remove('hidden');
+            document.getElementById('successContent').classList.add('hidden');
+            document.getElementById('backBtn').classList.remove('hidden');
+        }
+
+        // 🌟 核心：使用 JavaScript 提交，彻底告别 XML 报错页面
+        document.getElementById('vipForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const btn = document.getElementById('submitBtn');
+            const name = document.getElementById('shopName').value;
+            const email = document.getElementById('userEmail').value;
+            
+            btn.innerText = "Sending...";
+            btn.disabled = true;
+
+            // 提交到你的 Getform 接口
+            fetch("https://getform.io/f/nm5ok", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ name: name, email: email, source: "Vercel Popup" }),
+            })
+            .then(response => {
+                if (response.ok) {
+                    // 隐藏表单，显示成功信息，留在本页面！
+                    document.getElementById('modalContent').classList.add('hidden');
+                    document.getElementById('backBtn').classList.add('hidden');
+                    document.getElementById('successContent').classList.remove('hidden');
+                } else {
+                    alert("Submission failed. Please check your network.");
+                }
+            })
+            .catch(error => {
+                console.error("Error:", error);
+                alert("Submission error. Please try again.");
+            })
+            .finally(() => {
+                btn.innerText = "Submit Request";
+                btn.disabled = false;
+            });
+        });
     </script>
 </body>
 </html>
