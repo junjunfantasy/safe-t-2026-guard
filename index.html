@@ -7,43 +7,39 @@
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-gray-50 text-gray-900">
-    <div class="bg-red-600 text-white text-center py-2 text-sm font-bold shadow-lg">
-        ⚠️ 2/16新政已生效：30天索赔期倒计时启动！
-    </div>
+    <div class="bg-red-600 text-white text-center py-2 text-sm font-bold shadow-lg">⚠️ 2/16新政已生效：30天索赔期倒计时启动！</div>
 
-    <nav class="p-6 flex justify-between items-center bg-white shadow-sm border-b">
+    <nav class="p-6 flex flex-col md:flex-row justify-between items-center bg-white shadow-sm border-b gap-4">
         <div class="text-xl md:text-2xl font-black text-blue-600 tracking-tighter italic">
             SAFE-T <span class="text-gray-800">Guard 2026 | 亚马逊赔偿保护专家</span>
         </div>
-        <button onclick="showModal()" class="bg-blue-600 text-white px-4 md:px-6 py-2 rounded-full font-bold hover:scale-105 transition shadow-md text-sm md:text-base">获取VIP权限</button>
+        <button onclick="showModal()" class="bg-blue-600 text-white px-8 py-2 rounded-full font-bold hover:scale-105 transition shadow-md whitespace-nowrap">获取VIP权限</button>
     </nav>
 
     <header class="max-w-6xl mx-auto px-6 py-16 text-center">
-        <h1 class="text-4xl md:text-5xl font-black mb-6 italic leading-tight">挽回你的美金，就在这<span class="text-red-600 underline">30天</span></h1>
+        <h1 class="text-4xl md:text-6xl font-black mb-6 italic leading-tight tracking-tighter">挽回你的美金，就在这<span class="text-red-600 underline">30天</span></h1>
         <p class="text-lg text-gray-600">防止逾期导致的自动拒绝，守护每一分赔偿金</p>
     </header>
 
-    <section class="max-w-xl mx-auto px-6 py-10 bg-white rounded-3xl shadow-2xl mb-20 border border-gray-100">
-        <div class="text-center mb-6">
-            <span class="px-4 py-1 bg-blue-50 text-blue-600 rounded-full text-xs font-bold border border-blue-200">US Marketplace Only</span>
-        </div>
+    <section class="max-w-xl mx-auto px-6 py-10 bg-white rounded-3xl shadow-2xl mb-20 border border-gray-100 text-center">
+        <div class="mb-6"><span class="px-4 py-1 bg-blue-50 text-blue-600 rounded-full text-xs font-bold border border-blue-200">US Marketplace Only</span></div>
         <input type="date" id="orderDate" class="w-full p-4 border-2 border-gray-100 rounded-2xl mb-4 outline-none focus:border-blue-500 text-center text-xl font-bold">
         <button onclick="calculate()" class="w-full bg-blue-600 text-white py-4 rounded-2xl font-bold text-lg shadow-lg hover:bg-blue-700 transition active:scale-95">立即核查时效</button>
-        <div id="result" class="hidden mt-6 p-6 rounded-2xl text-center font-bold"></div>
+        <div id="result" class="hidden mt-6 p-6 rounded-2xl font-bold"></div>
     </section>
 
     <section class="max-w-6xl mx-auto px-6 py-10 grid md:grid-cols-3 gap-8 pb-32">
-        <div onclick="showModal()" class="cursor-pointer p-8 bg-white rounded-2xl shadow-sm border-2 border-transparent hover:border-blue-400 transition group">
+        <div onclick="showModal()" class="cursor-pointer p-8 bg-white rounded-2xl shadow-sm border border-gray-100 hover:border-blue-400 transition group text-left">
             <div class="text-blue-500 mb-4 font-black text-lg">01 自动同步监控</div>
             <p class="text-gray-500 text-sm">无需手动计算，API 自动抓取退单并实时推送过期预警。</p>
             <div class="mt-6 text-blue-600 text-xs font-bold underline group-hover:text-blue-800 italic">立即开启 →</div>
         </div>
-        <div class="p-8 bg-white rounded-2xl shadow-sm border border-gray-100">
+        <div class="p-8 bg-white rounded-2xl shadow-sm border border-gray-100 text-left">
             <div class="text-green-500 mb-4 font-black text-lg">02 AI 证据生成</div>
-            <p class="text-gray-500 text-sm leading-relaxed">AI自动比对重量与照片，生成100%过审的证据包。</p>
+            <p class="text-gray-500 text-sm leading-relaxed text-left">AI自动比对重量与照片，生成100%过审的证据包。</p>
             <div class="mt-6 text-gray-300 text-xs font-bold italic">即将上线</div>
         </div>
-        <div onclick="showModal()" class="cursor-pointer p-8 bg-white rounded-2xl shadow-sm border-2 border-transparent hover:border-purple-400 transition group">
+        <div onclick="showModal()" class="cursor-pointer p-8 bg-white rounded-2xl shadow-sm border border-gray-100 hover:border-purple-400 transition group text-left">
             <div class="text-purple-500 mb-4 font-black text-lg">03 多站点覆盖</div>
             <p class="text-gray-500 text-sm">同步支持英、德、日站点政策变动，确保全球赔偿不遗漏。</p>
             <div class="mt-6 text-purple-600 text-xs font-bold underline group-hover:text-purple-800 italic">开通全球版 →</div>
@@ -52,16 +48,22 @@
 
     <div id="modal" class="hidden fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center p-6 z-50">
         <div class="bg-white p-8 rounded-3xl max-w-sm w-full text-center shadow-2xl border-4 border-blue-50">
-            <h3 class="text-2xl font-extrabold mb-4 text-gray-900 leading-tight">获取 VIP 权限</h3>
-            <p class="text-gray-500 text-sm mb-8 leading-relaxed">请输入您的联系邮箱，我们将发送 VIP 激活码至此地址。</p>
+            <h3 class="text-2xl font-extrabold mb-2 text-gray-900 leading-tight">VIP Access Request</h3>
+            <p class="text-gray-500 text-xs mb-8 leading-relaxed">Request VIP access to enable automated API monitoring and AI evidence generation.</p>
             
             <form action="https://getform.io/f/nm5ok" method="POST" class="space-y-4">
-                <input type="email" name="email" placeholder="your@email.com" required 
+                <input type="text" name="store_name" placeholder="Your Amazon Store Name" required 
                        class="w-full p-4 border border-gray-200 rounded-xl outline-none focus:ring-4 ring-blue-100 transition shadow-inner text-center font-bold">
-                <button type="submit" class="w-full bg-blue-600 text-white py-4 rounded-xl font-bold text-lg shadow-lg hover:bg-blue-700 transition">立即免费申请</button>
+                
+                <input type="email" name="email" placeholder="Business Email Address" required 
+                       class="w-full p-4 border border-gray-200 rounded-xl outline-none focus:ring-4 ring-blue-100 transition shadow-inner text-center font-bold">
+                
+                <button type="submit" class="w-full bg-blue-600 text-white py-4 rounded-xl font-bold text-lg shadow-lg hover:bg-blue-700 active:scale-95 transition">
+                    Submit Request
+                </button>
             </form>
             
-            <button onclick="hideModal()" class="mt-6 text-gray-400 text-sm hover:text-gray-600 transition underline">暂时返回</button>
+            <button onclick="hideModal()" class="mt-6 text-gray-400 text-xs hover:text-gray-600 transition underline">Back to Home</button>
         </div>
     </div>
 
@@ -69,8 +71,7 @@
         function calculate() {
             const d = document.getElementById('orderDate').value;
             if(!d) return alert('请先选择日期');
-            const target = new Date(d);
-            target.setDate(target.getDate() + 30);
+            const target = new Date(d); target.setDate(target.getDate() + 30);
             const days = Math.ceil((target - new Date()) / 86400000);
             const res = document.getElementById('result');
             res.className = 'mt-6 p-6 rounded-2xl text-center font-bold block ' + (days > 0 ? 'bg-green-50 text-green-600' : 'bg-red-50 text-red-600');
