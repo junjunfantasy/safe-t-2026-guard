@@ -1,3 +1,4 @@
+# Version: 2026.02.15.v1
 import datetime
 
 def check_safet_deadline(order_date_str):
