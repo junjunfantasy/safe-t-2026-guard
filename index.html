@@ -6,116 +6,150 @@
     <title>SAFE-T Guard 2026 | Amazon Reimbursement Protection Specialist</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        body { font-family: 'Inter', system-ui, -apple-system, sans-serif; }
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap');
+        body { font-family: 'Inter', sans-serif; }
     </style>
 </head>
-<body class="bg-gray-50 text-gray-900">
-    <div class="bg-red-600 text-white text-center py-2 text-sm font-bold shadow-lg uppercase tracking-wider">
-        ⚠️ NEW 30-DAY POLICY LIVE: COUNTDOWN TO EXPIRATION ACTIVE!
+<body class="bg-slate-50 text-slate-900">
+    <div class="bg-red-600 text-white text-center py-2.5 text-xs font-black uppercase tracking-[0.2em]">
+        ⚠️ NEW 30-DAY POLICY ACTIVE: SECURE YOUR CLAIMS NOW
     </div>
 
     <nav class="p-6 flex flex-col lg:flex-row justify-between items-center bg-white shadow-sm border-b gap-4">
-        <div class="text-xl md:text-2xl font-black text-blue-600 tracking-tighter italic text-center lg:text-left leading-tight">
-            SAFE-T <span class="text-gray-800 uppercase">Guard 2026 | Amazon Protection</span>
+        <div class="text-xl md:text-2xl font-black text-blue-600 tracking-tighter italic leading-none">
+            SAFE-T <span class="text-slate-800 uppercase">Guard 2026 | Protection Specialist</span>
         </div>
-        <button onclick="showModal()" class="bg-blue-600 text-white px-8 py-2 rounded-full font-bold hover:scale-105 transition shadow-md whitespace-nowrap uppercase text-sm tracking-wide">
+        <button onclick="showModal()" class="bg-blue-600 text-white px-8 py-2.5 rounded-full font-bold hover:bg-blue-700 transition shadow-lg uppercase text-sm tracking-tighter">
             Get VIP Access
         </button>
     </nav>
 
-    <header class="max-w-5xl mx-auto px-6 py-20 text-center">
-        <h1 class="text-4xl md:text-6xl font-black mb-6 leading-tight tracking-tight">
-            Recover Your Revenue in the New <span class="text-red-600 underline decoration-4 underline-offset-4">30-Day Window</span>
+    <header class="max-w-4xl mx-auto px-6 py-20 text-center">
+        <h1 class="text-5xl md:text-7xl font-black mb-8 leading-[1.1] tracking-tight">
+            Protect Revenue in the <span class="text-red-600 italic">30-Day Window.</span>
         </h1>
-        <p class="text-xl text-gray-600 max-w-3xl mx-auto">
-            Stop losing money to Amazon's shortened claim period. Secure every dollar you are owed with automated monitoring and AI evidence protection.
+        <p class="text-xl text-slate-500 max-w-2xl mx-auto font-medium">
+            Amazon's claim policy has changed. Don't lose your reimbursements to time-outs. Join our automated protection network.
         </p>
     </header>
 
-    <section class="max-w-xl mx-auto px-6 py-10 bg-white rounded-3xl shadow-2xl mb-24 border border-gray-100 text-center">
-        <div class="mb-8"><span class="px-4 py-2 bg-blue-50 text-blue-800 rounded-full text-xs font-extrabold border border-blue-200 uppercase tracking-wider">US Marketplace Only</span></div>
-        <label class="block text-gray-500 text-sm font-bold mb-2 uppercase tracking-wide">Select Order Refund Date</label>
-        <input type="date" id="orderDate" class="w-full p-4 border-2 border-gray-200 rounded-2xl mb-6 outline-none focus:border-blue-500 text-center text-2xl font-bold shadow-sm text-gray-700">
-        <button onclick="calculate()" class="w-full bg-blue-600 text-white py-5 rounded-2xl font-bold text-xl shadow-lg hover:bg-blue-700 transition active:scale-95 uppercase tracking-wide">
-            Check Claim Deadline
+    <section class="max-w-xl mx-auto px-6 py-12 bg-white rounded-[2.5rem] shadow-2xl mb-24 border border-slate-100 text-center">
+        <div class="mb-8"><span class="px-4 py-1.5 bg-blue-50 text-blue-700 rounded-full text-xs font-black border border-blue-100 uppercase tracking-widest">US Marketplace Only</span></div>
+        <label class="block text-slate-400 text-xs font-black mb-3 uppercase tracking-widest">Select Refund Date</label>
+        <input type="date" id="orderDate" class="w-full p-5 border-2 border-slate-100 rounded-2xl mb-6 outline-none focus:border-blue-500 text-center text-2xl font-black shadow-inner">
+        <button onclick="calculate()" class="w-full bg-blue-600 text-white py-5 rounded-2xl font-black text-xl shadow-xl hover:bg-blue-700 transition active:scale-95 uppercase tracking-tighter">
+            Check Expiration
         </button>
-        <div id="result" class="hidden mt-8 p-6 rounded-2xl font-bold text-lg"></div>
+        <div id="result" class="hidden mt-8 p-6 rounded-2xl font-black text-lg"></div>
     </section>
 
-    <section class="max-w-6xl mx-auto px-6 pb-32">
-        <h2 class="text-3xl font-black text-center mb-12 uppercase tracking-tight">Enterprise-Grade Protection</h2>
-        <div class="grid md:grid-cols-3 gap-8 text-left">
-            <div onclick="showModal()" class="cursor-pointer p-10 bg-white rounded-3xl shadow-sm border-2 border-transparent hover:border-blue-500 transition group relative overflow-hidden">
-                <div class="absolute top-0 right-0 text-8xl font-black text-gray-50 opacity-50 -mr-4 -mt-4 z-0">01</div>
-                <div class="relative z-10">
-                    <div class="text-blue-600 mb-4 font-black text-xl uppercase tracking-tight">Automated API Monitoring</div>
-                    <p class="text-gray-500 leading-relaxed font-medium">Real-time connection to Seller Central. We detect refund triggers and send immediate alerts before the 30-day window closes.</p>
-                    <div class="mt-8 text-blue-600 text-sm font-extrabold uppercase tracking-wider group-hover:underline">Activate Tracking →</div>
-                </div>
+    <section class="max-w-6xl mx-auto px-6 pb-40 grid md:grid-cols-3 gap-8">
+        <div onclick="showModal()" class="cursor-pointer p-10 bg-white rounded-3xl shadow-sm border border-slate-100 hover:border-blue-500 transition group">
+            <div class="text-blue-600 mb-6 font-black text-lg uppercase tracking-widest flex items-center">
+                01 <span class="ml-2 w-8 h-[2px] bg-blue-100"></span>
             </div>
-            <div class="p-10 bg-gray-50 rounded-3xl shadow-inner border border-gray-200 relative overflow-hidden opacity-90">
-                <div class="absolute top-0 right-0 text-8xl font-black text-gray-100 opacity-50 -mr-4 -mt-4 z-0">02</div>
-                <div class="relative z-10">
-                    <div class="text-gray-400 mb-4 font-black text-xl uppercase tracking-tight flex items-center">
-                        AI Evidence Gen <span class="ml-2 px-2 py-1 bg-gray-200 text-gray-500 text-[10px] rounded-full font-bold">COMING SOON</span>
-                    </div>
-                    <p class="text-gray-500 leading-relaxed font-medium">Auto-compare item weights and return photos. Our AI generates undeniable evidence packages that meet all Amazon compliance standards.</p>
-                    <div class="mt-8 text-gray-400 text-sm font-extrabold uppercase tracking-wider">In Alpha Test</div>
-                </div>
+            <h3 class="text-xl font-black mb-4 uppercase">Automated API Monitoring</h3>
+            <p class="text-slate-500 text-sm leading-relaxed font-medium">Direct API sync with Seller Central. Real-time refund detection and instant expiration alerts before the 30-day cutoff.</p>
+            <div class="mt-8 text-blue-600 text-xs font-black uppercase tracking-widest group-hover:underline">Secure Now →</div>
+        </div>
+        <div class="p-10 bg-slate-50 rounded-3xl border border-slate-200 relative overflow-hidden">
+            <div class="absolute top-4 right-4 bg-slate-200 text-slate-500 text-[10px] font-black px-2 py-1 rounded">BETA</div>
+            <div class="text-slate-400 mb-6 font-black text-lg uppercase tracking-widest flex items-center">
+                02 <span class="ml-2 w-8 h-[2px] bg-slate-200"></span>
             </div>
-            <div onclick="showModal()" class="cursor-pointer p-10 bg-white rounded-3xl shadow-sm border-2 border-transparent hover:border-purple-500 transition group relative overflow-hidden">
-                 <div class="absolute top-0 right-0 text-8xl font-black text-gray-50 opacity-50 -mr-4 -mt-4 z-0">03</div>
-                <div class="relative z-10">
-                    <div class="text-purple-600 mb-4 font-black text-xl uppercase tracking-tight">Global Policy Sync</div>
-                    <p class="text-gray-500 leading-relaxed font-medium">One dashboard for all markets. We synchronize complex SAFE-T policy changes across US, UK, EU, and JP marketplaces.</p>
-                    <div class="mt-8 text-purple-600 text-sm font-extrabold uppercase tracking-wider group-hover:underline">Global Coverage →</div>
-                </div>
+            <h3 class="text-xl font-black mb-4 uppercase text-slate-400">AI Evidence Generation</h3>
+            <p class="text-slate-400 text-sm leading-relaxed font-medium">Automated analysis of weight data and return images to generate 100% compliant claim packages.</p>
+            <div class="mt-8 text-slate-300 text-xs font-black uppercase tracking-widest">Development Phase</div>
+        </div>
+        <div onclick="showModal()" class="cursor-pointer p-10 bg-white rounded-3xl shadow-sm border border-slate-100 hover:border-purple-500 transition group">
+            <div class="text-purple-600 mb-6 font-black text-lg uppercase tracking-widest flex items-center">
+                03 <span class="ml-2 w-8 h-[2px] bg-purple-100"></span>
             </div>
+            <h3 class="text-xl font-black mb-4 uppercase">Global Policy Sync</h3>
+            <p class="text-slate-500 text-sm leading-relaxed font-medium">Protect your revenue across all borders. We track SAFE-T policy shifts in US, UK, EU, and JP marketplaces.</p>
+            <div class="mt-8 text-purple-600 text-xs font-black uppercase tracking-widest group-hover:underline">View Global →</div>
         </div>
     </section>
 
-    <div id="modal" class="hidden fixed inset-0 bg-black/80 backdrop-blur-md flex items-center justify-center p-6 z-50">
-        <div class="bg-white p-10 rounded-[2.5rem] max-w-md w-full text-center shadow-2xl border-4 border-blue-50">
-            <h3 class="text-3xl font-extrabold mb-3 text-gray-900 leading-tight uppercase tracking-tight">Request VIP Access</h3>
-            <p class="text-gray-500 font-medium mb-10 leading-relaxed italic text-sm">Secure your store before the new policy window closes. Limited Beta spots available.</p>
-            
-            <form action="https://getform.io/f/nm5ok" method="POST" class="space-y-5">
-                <input type="hidden" name="_redirect" value="https://safe-t-2026-guard.vercel.app/thankyou.html">
-                
-                <input type="text" name="store_name" placeholder="Amazon Store Name / Brand" required 
-                       class="w-full p-5 border-2 border-gray-200 rounded-2xl outline-none focus:border-blue-500 transition shadow-sm text-center font-bold text-lg placeholder:font-medium placeholder:text-gray-400">
-                <input type="email" name="email" placeholder="Business Email Address" required 
-                       class="w-full p-5 border-2 border-gray-200 rounded-2xl outline-none focus:border-blue-500 transition shadow-sm text-center font-bold text-lg placeholder:font-medium placeholder:text-gray-400">
-                
-                <button type="submit" class="w-full bg-blue-600 text-white py-5 rounded-2xl font-extrabold text-xl shadow-xl hover:bg-blue-700 active:scale-95 transition uppercase tracking-wide">
-                    Claim VIP Access
-                </button>
-            </form>
-            
-            <button onclick="hideModal()" class="mt-8 text-gray-400 font-bold text-sm hover:text-gray-600 transition uppercase tracking-wider">Close Window</button>
+    <div id="modal" class="hidden fixed inset-0 bg-slate-900/60 backdrop-blur-md flex items-center justify-center p-6 z-50">
+        <div class="bg-white p-10 rounded-[3rem] max-w-md w-full text-center shadow-2xl border-4 border-blue-50">
+            <div id="modalForm">
+                <h3 class="text-3xl font-black mb-2 text-slate-900 uppercase">VIP Request</h3>
+                <p class="text-slate-500 text-sm mb-10 font-medium">Join the priority list for automated SAFE-T protection.</p>
+                <form id="requestForm" class="space-y-4">
+                    <input type="text" name="store_name" placeholder="YOUR STORE NAME" required 
+                           class="w-full p-5 border-2 border-slate-100 rounded-2xl outline-none focus:border-blue-500 text-center font-black uppercase placeholder:text-slate-300">
+                    <input type="email" name="email" placeholder="BUSINESS EMAIL" required 
+                           class="w-full p-5 border-2 border-slate-100 rounded-2xl outline-none focus:border-blue-500 text-center font-black uppercase placeholder:text-slate-300">
+                    <button type="submit" id="submitBtn" class="w-full bg-blue-600 text-white py-5 rounded-2xl font-black text-lg shadow-xl hover:bg-blue-700 transition">
+                        GET VIP ACCESS
+                    </button>
+                </form>
+            </div>
+            <div id="thankYou" class="hidden py-10">
+                <div class="text-6xl mb-6">✅</div>
+                <h3 class="text-3xl font-black mb-2 text-slate-900 uppercase tracking-tighter">Thank You!</h3>
+                <p class="text-slate-500 text-sm font-medium mb-10">Your VIP instructions will be sent to your email within 24 hours.</p>
+                <button onclick="hideModal()" class="w-full bg-slate-100 text-slate-500 py-4 rounded-2xl font-black uppercase">Close</button>
+            </div>
+            <button id="closeBtn" onclick="hideModal()" class="mt-8 text-slate-300 text-xs font-black uppercase tracking-widest hover:text-slate-500 transition">Go Back</button>
         </div>
     </div>
 
     <script>
         function calculate() {
             const d = document.getElementById('orderDate').value;
-            if(!d) return alert('Please select a date.');
+            if(!d) return alert('Select a date');
             const target = new Date(d); target.setDate(target.getDate() + 30);
-            const now = new Date();
-            const days = Math.ceil((target - now) / 86400000);
+            const days = Math.ceil((target - new Date()) / 86400000);
             const res = document.getElementById('result');
-            
-            if (days > 0) {
-                res.className = 'mt-8 p-6 rounded-2xl font-bold text-lg bg-red-50 text-red-600 border-2 border-red-100';
-                res.innerHTML = "🚨 ACTION REQUIRED: " + days + " days left until claim expiration!";
+            if(days > 0) {
+                res.className = 'mt-8 p-6 rounded-2xl font-black text-lg bg-red-50 text-red-600 border-2 border-red-100';
+                res.innerHTML = "🚨 ACTION REQUIRED: " + days + " DAYS LEFT!";
             } else {
-                 res.className = 'mt-8 p-6 rounded-2xl font-bold text-lg bg-gray-100 text-gray-500 border-2 border-gray-200';
-                res.innerHTML = "❌ EXPIRED: Order is past the 30-day SAFE-T window.";
+                res.className = 'mt-8 p-6 rounded-2xl font-black text-lg bg-slate-100 text-slate-400';
+                res.innerHTML = "❌ EXPIRED: POLICY WINDOW CLOSED";
             }
             res.classList.remove('hidden');
         }
+
         function showModal() { document.getElementById('modal').classList.remove('hidden'); }
-        function hideModal() { document.getElementById('modal').classList.add('hidden'); }
+        function hideModal() { 
+            document.getElementById('modal').classList.add('hidden');
+            document.getElementById('modalForm').classList.remove('hidden');
+            document.getElementById('thankYou').classList.add('hidden');
+            document.getElementById('closeBtn').classList.remove('hidden');
+        }
+
+        // 🌟 Silent Submission with AJAX
+        document.getElementById('requestForm').onsubmit = async function(e) {
+            e.preventDefault();
+            const btn = document.getElementById('submitBtn');
+            btn.innerText = "SENDING...";
+            btn.disabled = true;
+
+            const formData = new FormData(this);
+            try {
+                const response = await fetch("https://getform.io/f/nm5ok", {
+                    method: "POST",
+                    body: formData,
+                    headers: { "Accept": "application/json" }
+                });
+                
+                if (response.ok) {
+                    document.getElementById('modalForm').classList.add('hidden');
+                    document.getElementById('closeBtn').classList.add('hidden');
+                    document.getElementById('thankYou').classList.remove('hidden');
+                } else {
+                    alert("Submission failed. Please try again.");
+                }
+            } catch (error) {
+                alert("Network error. Please try again.");
+            } finally {
+                btn.innerText = "GET VIP ACCESS";
+                btn.disabled = false;
+            }
+        };
     </script>
 </body>
 </html>
