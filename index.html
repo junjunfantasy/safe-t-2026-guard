@@ -3,114 +3,280 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SAFE-T Guard 2026 | Amazon Reimbursement Protection Specialist</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <title>SAFE-T Guard 2026 | 亚马逊索赔保护专家</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap');
-        body { font-family: 'Inter', sans-serif; }
+        * {margin:0; padding:0; box-sizing:border-box; font-family:Arial, sans-serif;}
+        body {max-width:1200px; margin:2rem auto; padding:0 1rem; background:#f5f5f5;}
+        .header {color:#2c3e50; margin-bottom:2rem; border-bottom:2px solid #3498db; padding-bottom:1rem; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap;}
+        .lang-switch {display:flex; gap:0.5rem; margin-bottom:1rem;}
+        .lang-btn {padding:0.5rem 1rem; border:1px solid #3498db; border-radius:4px; background:white; color:#3498db; cursor:pointer; font-size:0.9rem;}
+        .lang-btn.active {background:#3498db; color:white;}
+        .tip {background:#ffeaa7; padding:0.8rem; border-radius:4px; margin:1rem 0; font-size:0.9rem; border-left:4px solid #f39c12;}
+        .card {background:white; padding:2rem; border-radius:8px; box-shadow:0 2px 8px rgba(0,0,0,0.1); margin-bottom:2rem;}
+        input, select, button {padding:0.8rem; border:1px solid #ddd; border-radius:4px; margin:0.5rem 0; width:100%; max-width:400px;}
+        input[type="date"] {color:#333; font-size:1rem;}
+        button {background:#3498db; color:white; border:none; cursor:pointer; font-weight:bold; transition:all 0.2s;}
+        button:hover {background:#2980b9; transform:scale(1.02);}
+        .result {margin:1rem 0; padding:1.2rem; border-radius:4px; font-weight:bold; font-size:1.05rem;}
+        .EXPIRED {background:#ecf0f1; color:#7f8c8d;}
+        .URGENT {background:#ffebee; color:#e74c3c; animation: flash 1s infinite alternate;}
+        .SAFE {background:#e8f5e9; color:#2ecc71;}
+        .ERROR {background:#ffeaa7; color:#d35400;}
+        .appeal-draft {margin:1rem 0; padding:1rem; background:#f8f9fa; border-left:4px solid #3498db; white-space:pre-wrap; line-height:1.5;}
+        .feedback {margin:0.5rem 0; font-size:0.9rem; color:#666;}
+        @keyframes flash {0% {opacity:0.8;} 100% {opacity:1;}}
+        .footer {margin-top:3rem; text-align:center; color:#7f8c8d; font-size:0.9rem;}
+        .link {color:#3498db; text-decoration:none;}
     </style>
 </head>
-<body class="bg-slate-50 text-slate-900">
-    <div class="bg-red-600 text-white text-center py-2.5 text-xs font-black uppercase tracking-[0.2em]">
-        ⚠️ NEW 30-DAY POLICY ACTIVE: SECURE YOUR REIMBURSEMENTS NOW
+<body>
+    <div class="header">
+        <div>
+            <h1 id="title-main">🛡️ SAFE-T Guard 2026</h1>
+            <h3 id="title-sub">亚马逊卖家赔偿保护专家 | 适配2026.02.16 30天新政</h3>
+            <p style="color:#e74c3c; margin-top:0.5rem;" id="title-warning">⚠️ 紧急：索赔窗口缩短至30天，超期自动拒绝！</p>
+        </div>
+        <!-- 新增：语言切换按钮 -->
+        <div class="lang-switch">
+            <button class="lang-btn active" id="btn-zh" onclick="switchLang('zh')">中文</button>
+            <button class="lang-btn" id="btn-en" onclick="switchLang('en')">English</button>
+        </div>
     </div>
 
-    <nav class="p-6 flex flex-col lg:flex-row justify-between items-center bg-white shadow-sm border-b gap-4">
-        <div class="text-xl md:text-2xl font-black text-blue-600 tracking-tighter italic">
-            SAFE-T <span class="text-slate-800 uppercase font-black">Guard 2026 | Protection Specialist</span>
-        </div>
-        <button onclick="showModal()" class="bg-blue-600 text-white px-8 py-2.5 rounded-full font-bold hover:bg-blue-700 transition shadow-lg uppercase text-sm tracking-tighter">
-            Get VIP Access
-        </button>
-    </nav>
+    <!-- 极简使用指引 -->
+    <div class="tip" id="guide-tip">
+        📌 使用指引：1.选择订单日期 → 2.查询索赔剩余时间 → 3.选择场景生成申诉信 | 亚马逊<a href="https://sellercentral.amazon.com/claims" target="_blank" class="link">SAFE-T索赔官方入口</a>
+    </div>
 
-    <header class="max-w-4xl mx-auto px-6 py-24 text-center">
-        <h1 class="text-5xl md:text-7xl font-black mb-8 leading-[1.05] tracking-tight">
-            Stop Losing Money in the <span class="text-red-600 italic underline decoration-8 underline-offset-8">30-Day Window.</span>
-        </h1>
-        <p class="text-xl text-slate-500 max-w-2xl mx-auto font-medium">
-            Amazon's SAFE-T claim policy has changed. Don't let your money expire. Connect to our automated protection network.
-        </p>
-    </header>
+    <!-- 核心功能1：索赔截止日期检查 -->
+    <div class="card">
+        <h3 id="card1-title">📅 检查索赔截止时间（UTC时间校准）</h3>
+        <input type="date" id="orderDate" value="2026-02-10">
+        <button onclick="checkDeadline()" id="btn-check">查询剩余时间</button>
+        <div class="feedback" id="queryFeedback"></div>
+        <div id="deadlineResult" class="result"></div>
+    </div>
 
-    <section class="max-w-xl mx-auto px-6 py-12 bg-white rounded-[2.5rem] shadow-2xl mb-24 border border-slate-100 text-center">
-        <div class="mb-8"><span class="px-4 py-1.5 bg-blue-50 text-blue-700 rounded-full text-xs font-black border border-blue-100 uppercase tracking-widest">US Marketplace Only</span></div>
-        <label class="block text-slate-400 text-xs font-black mb-3 uppercase tracking-widest">Select Refund Date</label>
-        <input type="date" id="orderDate" class="w-full p-5 border-2 border-slate-100 rounded-2xl mb-6 outline-none focus:border-blue-500 text-center text-2xl font-black shadow-inner">
-        <button onclick="calculate()" class="w-full bg-blue-600 text-white py-5 rounded-2xl font-black text-xl shadow-xl hover:bg-blue-700 transition active:scale-95 uppercase">
-            Check Expiration
-        </button>
-        <div id="result" class="hidden mt-8 p-6 rounded-2xl font-black text-lg"></div>
-    </section>
+    <!-- 核心功能2：AI申诉信生成 -->
+    <div class="card">
+        <h3 id="card2-title">✍️ 生成AI申诉信（适配Gemini/亚马逊规范）</h3>
+        <select id="reasonCode">
+            <option value="EMPTY_BOX" id="opt-empty">空包裹退回（高频）</option>
+            <option value="DAMAGED" id="opt-damaged">商品损坏无法销售</option>
+            <option value="SWITCHED" id="opt-switched">买家掉包商品</option>
+        </select>
+        <input type="text" id="orderId" placeholder="请输入亚马逊订单ID（如114-9283-001）" value="114-9283-001" id="input-orderid">
+        <button onclick="generateAppeal()" id="btn-generate">生成申诉信</button>
+        <div class="feedback" id="appealFeedback"></div>
+        <div class="appeal-draft" id="appealResult"></div>
+    </div>
 
-    <section class="max-w-6xl mx-auto px-6 pb-40">
-        <h2 class="text-3xl font-black text-center mb-16 uppercase tracking-tighter italic">Enterprise Protection Suite</h2>
-        <div class="grid md:grid-cols-3 gap-10">
-            <div onclick="showModal()" class="cursor-pointer p-10 bg-white rounded-[2.5rem] shadow-sm border border-slate-100 hover:border-blue-500 transition group relative overflow-hidden">
-                <div class="text-blue-100 font-black text-8xl absolute -top-4 -right-4 opacity-50 group-hover:text-blue-200 transition">01</div>
-                <div class="relative z-10">
-                    <h3 class="text-xl font-black mb-4 uppercase">API Monitoring</h3>
-                    <p class="text-slate-500 text-sm leading-relaxed font-medium">Direct connection to Seller Central. Real-time refund detection and instant alerts before the 30-day cutoff.</p>
-                    <div class="mt-8 text-blue-600 text-xs font-black uppercase group-hover:underline">Enable Monitoring →</div>
-                </div>
-            </div>
-            <div class="p-10 bg-slate-100 rounded-[2.5rem] border border-slate-200 relative overflow-hidden opacity-80">
-                <div class="text-slate-200 font-black text-8xl absolute -top-4 -right-4">02</div>
-                <div class="relative z-10">
-                    <h3 class="text-xl font-black mb-4 uppercase text-slate-400">AI Evidence</h3>
-                    <p class="text-slate-400 text-sm leading-relaxed font-medium">Our AI analyzes weight data and return images to generate 100% compliant claim packages automatically.</p>
-                    <div class="mt-8 text-slate-300 text-xs font-black uppercase">Coming Soon</div>
-                </div>
-            </div>
-            <div onclick="showModal()" class="cursor-pointer p-10 bg-white rounded-[2.5rem] shadow-sm border border-slate-100 hover:border-purple-500 transition group relative overflow-hidden">
-                <div class="text-purple-100 font-black text-8xl absolute -top-4 -right-4 opacity-50 group-hover:text-purple-200 transition">03</div>
-                <div class="relative z-10 text-left">
-                    <h3 class="text-xl font-black mb-4 uppercase">Global Policy</h3>
-                    <p class="text-slate-500 text-sm leading-relaxed font-medium font-left text-left">Protect revenue across borders. We track SAFE-T policy shifts in US, UK, EU, and JP marketplaces.</p>
-                    <div class="mt-8 text-purple-600 text-xs font-black uppercase group-hover:underline text-left font-left">View Global Coverage →</div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <div id="modal" class="hidden fixed inset-0 bg-slate-900/60 backdrop-blur-md flex items-center justify-center p-6 z-50">
-        <div class="bg-white p-10 rounded-[3rem] shadow-2xl border-4 border-blue-50 w-full max-w-md text-center">
-            <h3 class="text-3xl font-black mb-2 text-slate-900 uppercase">VIP Access</h3>
-            <p class="text-slate-500 text-sm mb-10 font-medium">Apply for automated SAFE-T protection beta.</p>
-            
-            <form action="https://getform.io/f/nm5ok" method="POST" class="space-y-4">
-                <input type="hidden" name="_redirect" value="https://safe-t-2026-guard.vercel.app/thankyou.html">
-                
-                <input type="text" name="store_name" placeholder="YOUR STORE NAME" required 
-                       class="w-full p-5 border-2 border-slate-100 rounded-2xl outline-none focus:border-blue-500 text-center font-black uppercase placeholder:text-slate-300">
-                <input type="email" name="email" placeholder="BUSINESS EMAIL" required 
-                       class="w-full p-5 border-2 border-slate-100 rounded-2xl outline-none focus:border-blue-500 text-center font-black uppercase placeholder:text-slate-300">
-                <button type="submit" class="w-full bg-blue-600 text-white py-5 rounded-2xl font-black text-lg shadow-xl hover:bg-blue-700 transition">
-                    GET VIP ACCESS
-                </button>
-            </form>
-            <button onclick="hideModal()" class="mt-8 text-slate-300 text-xs font-black uppercase tracking-widest hover:text-slate-500 transition">Go Back</button>
-        </div>
+    <div class="footer" id="footer-text">
+        © 2026 SAFE-T Guard | 亚马逊2026新政专属适配 | Inspired by the Super Individual Methodology
     </div>
 
     <script>
-        function calculate() {
-            const d = document.getElementById('orderDate').value;
-            if(!d) return alert('Select a date');
-            const target = new Date(d); target.setDate(target.getDate() + 30);
-            const days = Math.ceil((target - new Date()) / 86400000);
-            const res = document.getElementById('result');
-            if(days > 0) {
-                res.className = 'mt-8 p-6 rounded-2xl font-black text-lg bg-red-50 text-red-600 border-2 border-red-100';
-                res.innerHTML = "🚨 ACTION REQUIRED: " + days + " DAYS LEFT!";
-            } else {
-                res.className = 'mt-8 p-6 rounded-2xl font-black text-lg bg-slate-100 text-slate-400';
-                res.innerHTML = "❌ EXPIRED: POLICY WINDOW CLOSED";
+        // 1. 语言包定义（核心：所有文案集中管理）
+        const langData = {
+            zh: {
+                titleMain: "🛡️ SAFE-T Guard 2026",
+                titleSub: "亚马逊卖家赔偿保护专家 | 适配2026.02.16 30天新政",
+                titleWarning: "⚠️ 紧急：索赔窗口缩短至30天，超期自动拒绝！",
+                guideTip: "📌 使用指引：1.选择订单日期 → 2.查询索赔剩余时间 → 3.选择场景生成申诉信 | 亚马逊<a href=\"https://sellercentral.amazon.com/claims\" target=\"_blank\" class=\"link\">SAFE-T索赔官方入口</a>",
+                card1Title: "📅 检查索赔截止时间（UTC时间校准）",
+                btnCheck: "查询剩余时间",
+                card2Title: "✍️ 生成AI申诉信（适配Gemini/亚马逊规范）",
+                optEmpty: "空包裹退回（高频）",
+                optDamaged: "商品损坏无法销售",
+                optSwitched: "买家掉包商品",
+                inputOrderid: "请输入亚马逊订单ID（如114-9283-001）",
+                btnGenerate: "生成申诉信",
+                footerText: "© 2026 SAFE-T Guard | 亚马逊2026新政专属适配 | Inspired by the Super Individual Methodology",
+                // 操作反馈文案
+                queryLoading: "🔍 正在查询，UTC时间校准中...",
+                queryErrorDate: "❌ 请选择订单日期！",
+                queryExpired: "✅ 查询完成：订单索赔窗口已关闭",
+                queryUrgent: "✅ 查询完成：订单进入紧急索赔阶段",
+                querySafe: "✅ 查询完成：订单索赔窗口正常",
+                appealLoading: "✍️ 正在生成申诉信，适配亚马逊审核规范...",
+                appealErrorId: "❌ 订单ID格式错误！请输入如114-9283-001的格式",
+                appealSuccess: "✅ 申诉信生成完成：可直接复制提交至亚马逊索赔入口",
+                // 结果文案
+                resultExpired: "❌ 已过期！触发2026/02/16新政30天自动拒绝规则，UTC时间已超期。",
+                resultUrgent: "🚨 紧急！仅剩{time}处理窗口，请立即准备证据链（重量/物流/序列号）。",
+                resultSafe: "✅ 安全！剩余{time}处理窗口，可合理安排索赔操作。"
+            },
+            en: {
+                titleMain: "🛡️ SAFE-T Guard 2026",
+                titleSub: "Amazon Seller Reimbursement Protection Expert | Adapted to 2026.02.16 30-Day New Policy",
+                titleWarning: "⚠️ Urgent: Claim window shortened to 30 days, automatic rejection if overdue!",
+                guideTip: "📌 Usage Guide: 1.Select Order Date → 2.Check Remaining Claim Time → 3.Generate Appeal Letter by Scenario | Amazon<a href=\"https://sellercentral.amazon.com/claims\" target=\"_blank\" class=\"link\">SAFE-T Claim Official Portal</a>",
+                card1Title: "📅 Check Claim Deadline (UTC Time Calibration)",
+                btnCheck: "Check Remaining Time",
+                card2Title: "✍️ Generate AI Appeal Letter (Adapted to Gemini/Amazon Standards)",
+                optEmpty: "Empty Package Return (High Frequency)",
+                optDamaged: "Product Damaged & Unsellable",
+                optSwitched: "Buyer Swapped Product",
+                inputOrderid: "Enter Amazon Order ID (e.g. 114-9283-001)",
+                btnGenerate: "Generate Appeal Letter",
+                footerText: "© 2026 SAFE-T Guard | Adapted to Amazon 2026 New Policy | Inspired by the Super Individual Methodology",
+                // 操作反馈文案
+                queryLoading: "🔍 Querying, calibrating UTC time...",
+                queryErrorDate: "❌ Please select an order date!",
+                queryExpired: "✅ Query completed: Order claim window closed",
+                queryUrgent: "✅ Query completed: Order enters urgent claim phase",
+                querySafe: "✅ Query completed: Order claim window normal",
+                appealLoading: "✍️ Generating appeal letter, adapting to Amazon review standards...",
+                appealErrorId: "❌ Invalid Order ID format! Please enter like 114-9283-001",
+                appealSuccess: "✅ Appeal letter generated: Copy directly to submit to Amazon claim portal",
+                // 结果文案
+                resultExpired: "❌ Expired! Triggered 2026/02/16 new policy 30-day automatic rejection rule, UTC time overdue.",
+                resultUrgent: "🚨 Urgent! Only {time} remaining in processing window, prepare evidence chain immediately (weight/logistics/serial number).",
+                resultSafe: "✅ Safe! {time} remaining in processing window, arrange claim operations reasonably."
             }
-            res.classList.remove('hidden');
+        };
+
+        // 2. 全局当前语言变量（默认中文，记忆用户选择）
+        let currentLang = localStorage.getItem('safe-t-lang') || 'zh';
+
+        // 3. 语言切换核心函数
+        function switchLang(lang) {
+            // 更新当前语言
+            currentLang = lang;
+            // 记忆到本地存储（刷新不重置）
+            localStorage.setItem('safe-t-lang', lang);
+            // 更新按钮样式
+            document.getElementById('btn-zh').classList.toggle('active', lang === 'zh');
+            document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+            // 更新页面所有文案
+            updatePageLang();
         }
-        function showModal() { document.getElementById('modal').classList.remove('hidden'); }
-        function hideModal() { document.getElementById('modal').classList.add('hidden'); }
+
+        // 4. 更新页面文案函数
+        function updatePageLang() {
+            const lang = langData[currentLang];
+            // 更新静态文案
+            document.getElementById('title-main').innerText = lang.titleMain;
+            document.getElementById('title-sub').innerText = lang.titleSub;
+            document.getElementById('title-warning').innerText = lang.titleWarning;
+            document.getElementById('guide-tip').innerHTML = lang.guideTip; // 含HTML标签用innerHTML
+            document.getElementById('card1-title').innerText = lang.card1Title;
+            document.getElementById('btn-check').innerText = lang.btnCheck;
+            document.getElementById('card2-title').innerText = lang.card2Title;
+            document.getElementById('opt-empty').innerText = lang.optEmpty;
+            document.getElementById('opt-damaged').innerText = lang.optDamaged;
+            document.getElementById('opt-switched').innerText = lang.optSwitched;
+            document.getElementById('orderId').placeholder = lang.inputOrderid;
+            document.getElementById('btn-generate').innerText = lang.btnGenerate;
+            document.getElementById('footer-text').innerText = lang.footerText;
+        }
+
+        // 5. 初始化页面语言（页面加载时执行）
+        window.onload = function() {
+            // 初始化语言显示
+            switchLang(currentLang);
+            // 初始化按钮样式
+            document.getElementById('btn-zh').classList.toggle('active', currentLang === 'zh');
+            document.getElementById('btn-en').classList.toggle('active', currentLang === 'en');
+        };
+
+        // 6. 核心功能：索赔截止时间检查（适配双语）
+        function checkDeadline() {
+            const orderDateInput = document.getElementById('orderDate');
+            const resultDiv = document.getElementById('deadlineResult');
+            const feedbackDiv = document.getElementById('queryFeedback');
+            const orderDateStr = orderDateInput.value;
+            const lang = langData[currentLang];
+
+            // 操作反馈：查询中
+            feedbackDiv.innerText = lang.queryLoading;
+            feedbackDiv.style.color = "#3498db";
+
+            if (!orderDateStr) {
+                feedbackDiv.innerText = lang.queryErrorDate;
+                feedbackDiv.style.color = "#e74c3c";
+                resultDiv.innerHTML = "";
+                return;
+            }
+
+            // UTC时间计算
+            const now = new Date();
+            const utcNow = new Date(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate(), now.getUTCHours(), now.getUTCMinutes());
+            const orderDate = new Date(orderDateStr);
+            const utcOrderDate = new Date(Date.UTC(orderDate.getFullYear(), orderDate.getMonth(), orderDate.getDate()));
+            const deadline = new Date(utcOrderDate);
+            deadline.setDate(deadline.getDate() + 30);
+
+            // 计算剩余天+小时
+            const diffMs = deadline - utcNow;
+            const daysLeft = Math.floor(diffMs / (1000 * 60 * 60 * 24));
+            const hoursLeft = Math.floor((diffMs % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const timeStr = daysLeft > 0 ? `${daysLeft}天${hoursLeft}小时` : `${hoursLeft}小时`;
+            // 英文时间格式适配
+            const timeStrEn = daysLeft > 0 ? `${daysLeft}d ${hoursLeft}h` : `${hoursLeft}h`;
+            const finalTimeStr = currentLang === 'zh' ? timeStr : timeStrEn;
+
+            // 状态判断+结果展示
+            if (diffMs <= 0) {
+                resultDiv.className = "result EXPIRED";
+                resultDiv.innerText = lang.resultExpired;
+                feedbackDiv.innerText = lang.queryExpired;
+            } else if (daysLeft <= 5) {
+                resultDiv.className = "result URGENT";
+                resultDiv.innerText = lang.resultUrgent.replace('{time}', finalTimeStr);
+                feedbackDiv.innerText = lang.queryUrgent;
+            } else {
+                resultDiv.className = "result SAFE";
+                resultDiv.innerText = lang.resultSafe.replace('{time}', finalTimeStr);
+                feedbackDiv.innerText = lang.querySafe;
+            }
+        }
+
+        // 7. 核心功能：生成申诉信（适配双语，模板保持英文，符合亚马逊要求）
+        function generateAppeal() {
+            const reasonCode = document.getElementById('reasonCode').value;
+            const orderId = document.getElementById('orderId').value.trim();
+            const resultDiv = document.getElementById('appealResult');
+            const feedbackDiv = document.getElementById('appealFeedback');
+            const lang = langData[currentLang];
+            // 亚马逊订单ID正则校验
+            const orderIdReg = /^\d{3}-\d{4}-\d{3}$/;
+
+            // 操作反馈：生成中
+            feedbackDiv.innerText = lang.appealLoading;
+            feedbackDiv.style.color = "#3498db";
+
+            if (!orderIdReg.test(orderId)) {
+                feedbackDiv.innerText = lang.appealErrorId;
+                feedbackDiv.style.color = "#e74c3c";
+                resultDiv.innerHTML = "";
+                return;
+            }
+
+            // 申诉信模板（保持英文，符合亚马逊审核要求）
+            const templates = {
+                "EMPTY_BOX": `Dear Amazon Support,
+This is a formal SAFE-T claim for Order ${orderId} (adapt to Amazon 2026 30-day new policy).
+The buyer returned an EMPTY PACKAGE, which is a suspicious return behavior. Our outbound shipping weight was 0.8kg, but the returned weight was only 0.05kg (no product included).
+We request Amazon to review this claim and arrange the corresponding reimbursement as soon as possible.
+Thank you for your processing!`,
+                "DAMAGED": `Dear Amazon Support,
+This is a formal SAFE-T claim for Order ${orderId} (adapt to Amazon 2026 30-day new policy).
+The product was returned in unsellable condition: it is heavily used with obvious scratches and the original packaging is missing.
+According to Amazon's rules, we request a 50% restocking fee for this order. Please review and confirm.
+Thank you for your processing!`,
+                "SWITCHED": `Dear Amazon Support,
+This is a formal SAFE-T claim for Order ${orderId} (adapt to Amazon 2026 30-day new policy).
+The item returned by the buyer is NOT the one we shipped: the serial number on the returned item does not match our outbound delivery records.
+This is a clear product switching behavior, we request Amazon to investigate and arrange full reimbursement.
+Thank you for your processing!`
+            };
+
+            // 结果展示+反馈
+            resultDiv.innerText = templates[reasonCode];
+            feedbackDiv.innerText = lang.appealSuccess;
+            feedbackDiv.style.color = "#2ecc71";
+        }
     </script>
 </body>
 </html>
